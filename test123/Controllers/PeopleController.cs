@@ -13,7 +13,7 @@ namespace test123.Controllers
 
 
 
-        private static List<Person> people = new List<Person>();
+        private static Person[] people = new Person[0];
         private static int nextId = 1;
 
         public ActionResult Index()
@@ -34,7 +34,16 @@ namespace test123.Controllers
 
                 nextId++;
 
-                people.Add(newPerson);
+                var newArray = new Person[people.Length + 1];
+
+                for (int i = 0; i < people.Length; i++)
+                { 
+                    newArray[i] = people[i];
+                }
+
+                newArray[people.Length] = newPerson;
+
+                people = newArray;
 
             }
             return RedirectToAction("Index");
