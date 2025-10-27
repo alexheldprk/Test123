@@ -18,15 +18,17 @@ namespace test123.Controllers
 
         public ActionResult Index()
         {
+            System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl im Array: " + people.Length);
             return View(people);
         }
 
         [HttpPost]
         public ActionResult Add(string name)
         {
+            Person newPerson = null;
             if (!string.IsNullOrWhiteSpace(name))
             {
-                var newPerson = new Person
+                newPerson = new Person
                 {
                     Id = nextId,
                     Name = name
@@ -46,6 +48,9 @@ namespace test123.Controllers
                 people = newArray;
 
             }
+            System.Diagnostics.Debug.WriteLine("Neuer eintrag hinzugefügt: " + newPerson.Name);
+            System.Diagnostics.Debug.WriteLine("Gesamtanzahl: " + people.Length);
+
             return RedirectToAction("Index");
         }
     }
