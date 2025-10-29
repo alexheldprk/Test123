@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using test123.Models;
 
 namespace test123.Controllers
@@ -10,19 +11,23 @@ namespace test123.Controllers
     public class PeopleController : Controller
     {
         private static List<Person> plist = new List<Person>();
-        private static Person[] people = new Person[0];
-        private static int nextId = 1;
+        //private static Person[] people = new Person[0];
+        //private static int nextId = 1;
 
         static PeopleController()
         {
-            //plist.Clear();
-            plist.Add(new Person { Id = 999, Name = "testperson" });
-            plist.Add(new Person { Id = 999, Name = "testperson" });
-            plist.Add(new Person { Id = 999, Name = "testperson" });
-            plist.Add(new Person { Id = 999, Name = "testperson" });
-            System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl im Array: " + people.Length);
-            System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl im Array: " + plist.Count);
+            if (!plist.Any())
+            {
+                //plist.Clear();
+                plist.Add(new Person { Id = 999, Name = "testperson" });
+                plist.Add(new Person { Id = 999, Name = "testperson" });
+                plist.Add(new Person { Id = 999, Name = "testperson" });
+                plist.Add(new Person { Id = 999, Name = "testperson" });
+                //System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl im Array: " + people.Length);
+                System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl der Liste: " + plist.Count);
+            }
         }
+
         [HttpGet]
         public ActionResult Index()
         { 
@@ -36,34 +41,48 @@ namespace test123.Controllers
         }
 
         [HttpPost]
-        public JsonResult Add(string name)
+        public JsonResult Add(Person newPerson)
         {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                return Json(new { error = "Name darf nicht leer sein." });
-            }
+            if (newPerson == null || string.IsNullOrWhiteSpace(newPerson.Name))
+                return Json(new { error = "ungültige eingabe" });
 
-            Person newPerson = new Person 
-            { 
-                Id = nextId++, Name = name 
-            };
+            newPerson.Id = plist.Any() ? plist.Max(p => p.Id) + 1 : 1;
+            plist.Add(newPerson);
+            
 
-            nextId++;
-           
-                var newArray = new Person[people.Length + 1];
-
-            for (int i = 0; i < people.Length; i++)
-            {
-                newArray[i] = people[i];
-            }
-                newArray[newArray.Length - 1] = newPerson;
-                people = newArray;
-
-                System.Diagnostics.Debug.WriteLine("Neuer eintrag hinzugefügt: " + newPerson.Name);
-                System.Diagnostics.Debug.WriteLine("Gesamtanzahl: " + people.Length);
-
-                return Json(newPerson);            
+            return Json(newPerson);
         }
+    
+
+        //[HttpPost]
+        //public JsonResult Add(string name)
+        //{
+        //    if (string.IsNullOrWhiteSpace(name))
+        //    {
+        //        return Json(new { error = "Name darf nicht leer sein." });
+        //    }
+
+        //    Person newPerson = new Person 
+        //    { 
+        //        Id = nextId++, Name = name 
+        //    };
+
+        //    nextId++;
+
+        //        var newArray = new Person[people.Length + 1];
+
+        //    for (int i = 0; i < people.Length; i++)
+        //    {
+        //        newArray[i] = people[i];
+        //    }
+        //        newArray[newArray.Length - 1] = newPerson;
+        //        people = newArray;
+
+        //        System.Diagnostics.Debug.WriteLine("Neuer eintrag hinzugefügt: " + newPerson.Name);
+        //        System.Diagnostics.Debug.WriteLine("Gesamtanzahl: " + people.Length);
+
+        //        return Json(newPerson);            
+        //}
 
         public ActionResult About()
         {

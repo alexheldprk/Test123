@@ -5,14 +5,13 @@ $(document).ready(function () {
         event.preventDefault();
 
         var newPerson = {
-            Name: $("#nameInput").val()
-        };
+            Name: $("#nameInput").val();
+};
 
         $.ajax({
             url: '/People/Add',
             type: 'POST',
-            data: JSON.stringify(newPerson),
-            contentType: "application/json; charset=utf-8",
+            data: { Name: name },
             success: function (newPerson) {
                 $("#peopleTable tbody").append(
                     "<tr><td>" + newPerson.Id + "<td><td>" + newPerson.Name + "<td><tr>"
