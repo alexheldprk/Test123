@@ -1,4 +1,6 @@
-﻿@model test123.Models.Person[]
+﻿@using test123.Models
+
+@model List<Person>
 
 @{
     ViewBag.Title = "Home Page";
@@ -15,21 +17,26 @@
 
     <h2> Personenliste</h2>
 
-    @if (Model != null && Model.Length > 0)
+    @if (Model != null && Model.Count > 0)
     {
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-            </tr>
+        <table id="peopleTable" border="1" cellpadding="5">
 
-            @for (int i = 0; i < Model.Length; i++)
-            {
+            <thead>
                 <tr>
-                    <td>@Model[i].Id</td>
-                    <td>@Model[i].Name</td>
+                    <th>ID</th>
+                    <th>Name</th>
                 </tr>
-            }
+            </thead>
+
+            <tbody>
+                @foreach (var person in Model)
+                {
+                    <tr>
+                        <td>@person.Id</td>
+                        <td>@person.Name</td>
+                    </tr>
+                }
+            </tbody>
         </table>
     }
     else
@@ -41,9 +48,10 @@
 
     @using (Html.BeginForm("Add", "People", FormMethod.Post))
     {
-        <form>
-            <input type="text" name="name" placeholder="Neuer Name" />
+        <form id="addForm">
+            <input type="text" id="nameInput" name="name" placeholder="Neuer Name" />
             <button type="submit">Hinzufügen</button>
+            <input type="button" id="btntest" name="TEST" title="TEST" value="TEST" onclick="btnclick()" />
         </form>
     }
 

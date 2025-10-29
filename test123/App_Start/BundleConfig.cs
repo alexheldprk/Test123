@@ -17,6 +17,9 @@ namespace test123
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                         "~/Scripts/funktionen.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/People").Include(
+                        "~/Scripts/People/people.js"));
+
 
             // Verwenden Sie die Entwicklungsversion von Modernizr zum Entwickeln und Erweitern Ihrer Kenntnisse. Wenn Sie dann
             // bereit ist für die Produktion, verwenden Sie das Buildtool unter https://modernizr.com, um nur die benötigten Tests auszuwählen.

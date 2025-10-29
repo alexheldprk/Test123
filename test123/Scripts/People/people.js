@@ -1,15 +1,20 @@
-﻿$(document).ready(function () {
-    $("#addform").submit(function (event) {
+﻿
+
+$(document).ready(function () {
+    $("#addForm").submit(function (event) {
         event.preventDefault();
 
-        var name = $("#nameinput").val();
+        var newPerson = {
+            Name: $("#nameInput").val()
+        };
 
         $.ajax({
             url: '/People/Add',
             type: 'POST',
-            data: { name: name },
+            data: JSON.stringify(newPerson),
+            contentType: "application/json; charset=utf-8",
             success: function (newPerson) {
-                $("#peopleTable").append(
+                $("#peopleTable tbody").append(
                     "<tr><td>" + newPerson.Id + "<td><td>" + newPerson.Name + "<td><tr>"
                 );
                 $("#nameInput").val("");
@@ -20,3 +25,7 @@
         });
     });
 });
+var btnclick = function (event) {
+       
+       
+alert("Button geklickt"); };
