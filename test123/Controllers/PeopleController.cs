@@ -19,10 +19,10 @@ namespace test123.Controllers
             if (!plist.Any())
             {
                 //plist.Clear();
-                plist.Add(new Person { Id = 999, Name = "testperson" });
-                plist.Add(new Person { Id = 999, Name = "testperson" });
-                plist.Add(new Person { Id = 999, Name = "testperson" });
-                plist.Add(new Person { Id = 999, Name = "testperson" });
+                plist.Add(new Person { Id = 1, Name = "testperson1" });
+                plist.Add(new Person { Id = 2, Name = "testperson2" });
+                plist.Add(new Person { Id = 3, Name = "testperson3" });
+                plist.Add(new Person { Id = 4, Name = "testperson4" });
                 //System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl im Array: " + people.Length);
                 System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl der Liste: " + plist.Count);
             }

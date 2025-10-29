@@ -39,6 +39,7 @@
             </tbody>
         </table>
     }
+
     else
     {
         <p>Noch keine einträge vorhanden.</p>
@@ -46,14 +47,14 @@
 
     <hr />
 
-    @using (Html.BeginForm("Add", "People", FormMethod.Post))
-    {
+    @*@using (Html.BeginForm("Add", "People", FormMethod.Post))*@
+    
         <form id="addForm">
             <input type="text" id="nameInput" name="name" placeholder="Neuer Name" />
             <button type="submit">Hinzufügen</button>
             <input type="button" id="btntest" name="TEST" title="TEST" value="TEST" onclick="btnclick()" />
         </form>
-    }
+    
 
     <div class="row">
         <section class="col-md-4" aria-labelledby="gettingStartedTitle">
