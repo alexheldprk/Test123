@@ -31,9 +31,9 @@
             <tbody>
                 @foreach (var person in Model)
                 {
-                    <tr>
+                    <tr data-id="@person.Id">
                         <td>@person.Id</td>
-                        <td>@person.Name</td>
+                        <td class="nameCell">@person.Name</td>
                         <td>
                             <button type="button" class="editButton">Bearbeiten</button>
                         </td>

@@ -1,6 +1,7 @@
-﻿
+﻿$(document).ready(function () {
 
-$(document).ready(function () {
+    /*Formular befüllen*/
+
     $("#addForm").submit(function (event) {
         event.preventDefault();
 
@@ -10,6 +11,7 @@ $(document).ready(function () {
             return;
         }
 
+        /*Formular absenden*/
 
         $.ajax({
             url: '/People/Add',

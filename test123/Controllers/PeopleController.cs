@@ -40,6 +40,8 @@ namespace test123.Controllers
             return Json(plist);
         }
 
+        // ---Neu Hinzufügen---
+
         [HttpPost]
         public JsonResult Add(Person newPerson)
         {
@@ -53,12 +55,11 @@ namespace test123.Controllers
             return Json(newPerson);
         }
 
+        // ---Bearbeiten---
+
         [HttpPost]
         public JsonResult Edit(Person editPerson)
         {
-            //if (editPerson == null || string.IsNullOrWhiteSpace(editPerson.Name))
-            //    return Json(new { error = "Ungültige Eingabe" });
-
             var person = plist.FirstOrDefault(p => p.Id == editPerson.Id);
             if (person == null)
                 return Json(new { error = "Person wurde nicht gefunden" });
@@ -69,35 +70,8 @@ namespace test123.Controllers
         }
     
 
-        //[HttpPost]
-        //public JsonResult Add(string name)
-        //{
-        //    if (string.IsNullOrWhiteSpace(name))
-        //    {
-        //        return Json(new { error = "Name darf nicht leer sein." });
-        //    }
 
-        //    Person newPerson = new Person 
-        //    { 
-        //        Id = nextId++, Name = name 
-        //    };
 
-        //    nextId++;
-
-        //        var newArray = new Person[people.Length + 1];
-
-        //    for (int i = 0; i < people.Length; i++)
-        //    {
-        //        newArray[i] = people[i];
-        //    }
-        //        newArray[newArray.Length - 1] = newPerson;
-        //        people = newArray;
-
-        //        System.Diagnostics.Debug.WriteLine("Neuer eintrag hinzugefügt: " + newPerson.Name);
-        //        System.Diagnostics.Debug.WriteLine("Gesamtanzahl: " + people.Length);
-
-        //        return Json(newPerson);            
-        //}
 
         public ActionResult About()
         {

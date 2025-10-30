@@ -14,8 +14,8 @@ namespace test123
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-                        "~/Scripts/funktionen.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+            //            "~/Scripts/funktionen.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/People").Include(
                         "~/Scripts/People/people.js",
