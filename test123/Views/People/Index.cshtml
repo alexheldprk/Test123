@@ -34,6 +34,9 @@
                     <tr>
                         <td>@person.Id</td>
                         <td>@person.Name</td>
+                        <td>
+                            <button type="button" class="editButton">Bearbeiten</button>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -48,13 +51,16 @@
     <hr />
 
     @*@using (Html.BeginForm("Add", "People", FormMethod.Post))*@
-    
+    @*{*@
         <form id="addForm">
             <input type="text" id="nameInput" name="name" placeholder="Neuer Name" />
             <button type="submit">Hinzufügen</button>
             <input type="button" id="btntest" name="TEST" title="TEST" value="TEST" onclick="btnclick()" />
         </form>
-    
+    @*}*@
+
+
+
 
     <div class="row">
         <section class="col-md-4" aria-labelledby="gettingStartedTitle">

@@ -17,7 +17,7 @@ $(document).ready(function () {
             data: { Name: newName },
             success: function (newPerson) {
                 $("#peopleTable tbody").append(
-                    "<tr><td>" + newPerson.Id + "<td><td>" + newPerson.Name + "<td><tr>"
+                    "<tr><td>" + newPerson.Id + "</td><td>" + newPerson.Name + "</td></tr>"
                 );
                 $("#nameInput").val("");
             },

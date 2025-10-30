@@ -48,9 +48,24 @@ namespace test123.Controllers
 
             newPerson.Id = plist.Any() ? plist.Max(p => p.Id) + 1 : 1;
             plist.Add(newPerson);
-            
+
 
             return Json(newPerson);
+        }
+
+        [HttpPost]
+        public JsonResult Edit(Person editPerson)
+        {
+            //if (editPerson == null || string.IsNullOrWhiteSpace(editPerson.Name))
+            //    return Json(new { error = "Ungültige Eingabe" });
+
+            var person = plist.FirstOrDefault(p => p.Id == editPerson.Id);
+            if (person == null)
+                return Json(new { error = "Person wurde nicht gefunden" });
+
+            person.Name = editPerson.Name;
+
+            return Json(person);
         }
     
 
