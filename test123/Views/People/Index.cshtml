@@ -36,6 +36,7 @@
                         <td class="nameCell">@person.Name</td>
                         <td>
                             <button type="button" class="editButton">Bearbeiten</button>
+                            <button type="button" class="detailsButton">Details</button>
                         </td>
                     </tr>
                 }
@@ -45,10 +46,24 @@
 
     else
     {
-        <p>Noch keine einträge vorhanden.</p>
+        <p>Noch keine Einträge vorhanden.</p>
     }
 
     <hr />
+
+    <div class="modal fade" id="detailsModal">
+        <div class="modal-dialog">
+            <div class="modal-content p-3">
+                <h5>Personendetails</h5>
+                <p><strong>ID:</strong> <span id="detailId"></span></p>
+                <p><strong>Name:</strong> <span id="detailName"></span></p>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+
+
 
     @*@using (Html.BeginForm("Add", "People", FormMethod.Post))*@
     @*{*@

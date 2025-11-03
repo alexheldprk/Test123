@@ -24,6 +24,7 @@
                         <td class="nameCell">${newPerson.Name}</td>
                         <td>
                             <button type="button" class="editButton">Bearbeiten</button>
+                            <button type="button" class="detailsButton">Details</button>
                         </td>
                     </tr>
                 `);
