@@ -58,13 +58,13 @@ namespace test123.Controllers
         // ---Bearbeiten---
 
         [HttpPost]
-        public JsonResult Edit(Person editPerson)
+        public JsonResult Edit(int Id, string Name)
         {
-            var person = plist.FirstOrDefault(p => p.Id == editPerson.Id);
+            var person = plist.FirstOrDefault(p => p.Id == Id);
             if (person == null)
                 return Json(new { error = "Person wurde nicht gefunden" });
 
-            person.Name = editPerson.Name;
+            person.Name = Name;
 
             return Json(person);
         }

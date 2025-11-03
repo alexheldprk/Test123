@@ -18,9 +18,15 @@
             type: 'POST',
             data: { Name: newName },
             success: function (newPerson) {
-                $("#peopleTable tbody").append(
-                    "<tr><td>" + newPerson.Id + "</td><td>" + newPerson.Name + "</td></tr>"
-                );
+                $("#peopleTable tbody").append(`
+                    <tr data-id="${newPerson.Id}">
+                        <td>${newPerson.Id}</td>
+                        <td class="nameCell">${newPerson.Name}</td>
+                        <td>
+                            <button type="button" class="editButton">Bearbeiten</button>
+                        </td>
+                    </tr>
+                `);
                 $("#nameInput").val("");
             },
             error: function () {
@@ -28,12 +34,12 @@
             }
         });
     });
+});
 
+/*Testbutton*/
 
     var btnclick = function (event) {
 
 
         alert("Button geklickt");
     }
-
-});

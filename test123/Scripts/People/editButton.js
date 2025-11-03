@@ -3,7 +3,7 @@
     /*Formular aufruf*/
 
     $("#peopleTable").on("click", ".editButton", function () {
-        console.log("Edit-button wurde geklickt")
+        console.log("Edit-button wurde geklickt");
         var $row = $(this).closest("tr");
         var id = $row.data("id");
         var name = $row.find(".nameCell").text();
@@ -28,10 +28,15 @@
         /*Formular absenden*/
 
         $.ajax({
-            url: '/People/editButton',
+            url: '/People/Edit',
             type: 'POST',
             data: { Id: id, Name: newName },
             success: function (updatedPerson) {
+                if (updatedPerson.error) {
+                    alert(updatedPerson.error);
+                    return;
+                }
+
                 $row.find(".nameCell").text(updatedPerson.Name);
                 $row.find(".saveButton").text("Bearbeiten").removeClass("saveButton").addClass("editButton");
             },
