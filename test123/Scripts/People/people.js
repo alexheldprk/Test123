@@ -35,6 +35,34 @@
             }
         });
     });
+
+
+    $.ajax({
+        url: '/People/GetAll',
+        type: 'POST',
+        //data: { Name: newName },
+        success: function (plist) {
+
+            var tbody = $("#peopleTable tbody");
+            for (var i = 0; i < plist.length; i++) {
+
+                tbody.append(`
+                    <tr data-id="${plist[i].Id}">
+                        <td>${plist[i].Id}</td>
+                        <td class="nameCell">${plist[i].Name}</td>
+                        <td>
+                            <button type="button" class="editButton">Bearbeiten</button>
+                            <button type="button" class="detailsButton">Details</button>
+                        </td>
+                    </tr>
+                `);
+            }           
+        },
+        error: function () {
+            alert("Fehler beim Lesen!")
+        }
+    });
+
 });
 
 /*Testbutton*/

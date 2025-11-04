@@ -15,6 +15,8 @@
         <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
     </section>
 
+    @*Tabelle*@
+
     <h2> Personenliste</h2>
 
     @if (Model != null && Model.Count > 0)
@@ -29,17 +31,22 @@
             </thead>
 
             <tbody>
-                @foreach (var person in Model)
-                {
-                    <tr data-id="@person.Id">
-                        <td>@person.Id</td>
-                        <td class="nameCell">@person.Name</td>
-                        <td>
-                            <button type="button" class="editButton">Bearbeiten</button>
-                            <button type="button" class="detailsButton">Details</button>
-                        </td>
-                    </tr>
-                }
+
+                @*
+        @foreach (var person in Model)
+        {
+            <tr data-id="@person.Id">
+                <td>@person.Id</td>
+                <td class="nameCell">@person.Name</td>
+                <td>
+                    <button type="button" class="editButton">Bearbeiten</button>
+                    <button type="button" class="detailsButton">Details</button>
+                </td>
+            </tr>
+        }
+                *@
+
+
             </tbody>
         </table>
     }
@@ -50,6 +57,8 @@
     }
 
     <hr />
+
+    @*Details-Popup*@
 
     <div class="modal fade" id="detailsModal">
         <div class="modal-dialog">
@@ -63,16 +72,14 @@
     </div>
 
 
+    @*Eintrag hinzufügen*@
 
-
-    @*@using (Html.BeginForm("Add", "People", FormMethod.Post))*@
-    @*{*@
         <form id="addForm">
             <input type="text" id="nameInput" name="name" placeholder="Neuer Name" />
             <button type="submit">Hinzufügen</button>
             <input type="button" id="btntest" name="TEST" title="TEST" value="TEST" onclick="btnclick()" />
         </form>
-    @*}*@
+    
 
 
 

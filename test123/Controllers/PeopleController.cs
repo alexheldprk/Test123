@@ -31,10 +31,13 @@ namespace test123.Controllers
         [HttpGet]
         public ActionResult Index()
         { 
+            //Daten von EF lesen und in plist speichern.
+
+
             return View(plist);
         }
 
-        [HttpGet]
+        [HttpPost]
         public JsonResult GetAll()
         {
             return Json(plist);
