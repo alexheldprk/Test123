@@ -25,6 +25,8 @@ namespace test123.Controllers
                 plist.Add(new Person { Id = 4, Name = "testperson4" });
                 //System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl im Array: " + people.Length);
                 System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl der Liste: " + plist.Count);
+                System.Diagnostics.Debug.WriteLine(plist[0].Name);
+                //Console.WriteLine(plist[0]);
             }
         }
 

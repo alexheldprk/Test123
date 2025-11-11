@@ -10,7 +10,7 @@ namespace test123.Data
 {
     public class test123DbContext : DbContext
     {
-        public test123DbContext() : base("name=test123db") { }
+        public test123DbContext() : base("PersonConnection") { }
         public DbSet<Person> Personen {  get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
