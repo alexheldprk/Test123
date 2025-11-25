@@ -20,7 +20,8 @@ namespace test123
             bundles.Add(new ScriptBundle("~/bundles/People").Include(
                         "~/Scripts/People/people.js",
                         "~/Scripts/People/editButton.js",
-                        "~/Scripts/People/detailsButton.js"));
+                        "~/Scripts/People/detailsButton.js",
+                        "~/Scripts/People/deleteButton.js"));
 
 
             // Verwenden Sie die Entwicklungsversion von Modernizr zum Entwickeln und Erweitern Ihrer Kenntnisse. Wenn Sie dann

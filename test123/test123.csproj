@@ -180,6 +180,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\People\deleteButton.js" />
     <Content Include="Scripts\People\detailsButton.js" />
     <Content Include="Scripts\People\editButton.js" />
     <Content Include="Scripts\People\people.js" />

@@ -4,45 +4,48 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
+using test123.Data;
 using test123.Models;
 
 namespace test123.Controllers
 {
     public class PeopleController : Controller
     {
-        private static List<Person> plist = new List<Person>();
+        private readonly test123DbContext db = new test123DbContext();
+        //private static List<Person> plist = new List<Person>();
         //private static Person[] people = new Person[0];
         //private static int nextId = 1;
 
-        static PeopleController()
-        {
-            if (!plist.Any())
-            {
-                //plist.Clear();
-                plist.Add(new Person { Id = 1, Name = "testperson1" });
-                plist.Add(new Person { Id = 2, Name = "testperson2" });
-                plist.Add(new Person { Id = 3, Name = "testperson3" });
-                plist.Add(new Person { Id = 4, Name = "testperson4" });
-                //System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl im Array: " + people.Length);
-                System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl der Liste: " + plist.Count);
-                System.Diagnostics.Debug.WriteLine(plist[0].Name);
-                //Console.WriteLine(plist[0]);
-            }
-        }
+        //static PeopleController()
+        //{
+        //    if (!plist.Any())
+        //    {
+        //        plist.Clear();
+        //        plist.Add(new Person { Id = 1, Name = "testperson1" });
+        //        plist.Add(new Person { Id = 2, Name = "testperson2" });
+        //        plist.Add(new Person { Id = 3, Name = "testperson3" });
+        //        plist.Add(new Person { Id = 4, Name = "testperson4" });
+        //        System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl im Array: " + people.Length);
+        //        System.Diagnostics.Debug.WriteLine("Aktuelle Anzahl der Liste: " + plist.Count);
+        //        System.Diagnostics.Debug.WriteLine(plist[0].Name);
+        //        Console.WriteLine(plist[0]);
+        //    }
+        //}
+
+        //Tabelle aufrufen
 
         [HttpGet]
         public ActionResult Index()
         { 
-            //Daten von EF lesen und in plist speichern.
-
-
-            return View(plist);
+            var people = db.Personen.ToList();
+            return View(people);
         }
 
         [HttpPost]
         public JsonResult GetAll()
         {
-            return Json(plist);
+            var people = db.Personen.ToList();
+            return Json(people);
         }
 
         // ---Neu Hinzufügen---
@@ -53,8 +56,11 @@ namespace test123.Controllers
             if (newPerson == null || string.IsNullOrWhiteSpace(newPerson.Name))
                 return Json(new { error = "ungültige eingabe" });
 
-            newPerson.Id = plist.Any() ? plist.Max(p => p.Id) + 1 : 1;
-            plist.Add(newPerson);
+            //newPerson.Id = plist.Any() ? plist.Max(p => p.Id) + 1 : 1;
+            //plist.Add(newPerson);
+
+            db.Personen.Add(newPerson);
+            db.SaveChanges();
 
 
             return Json(newPerson);
@@ -65,16 +71,31 @@ namespace test123.Controllers
         [HttpPost]
         public JsonResult Edit(int Id, string Name)
         {
-            var person = plist.FirstOrDefault(p => p.Id == Id);
+            var person = db.Personen.FirstOrDefault(p => p.Id == Id);
             if (person == null)
                 return Json(new { error = "Person wurde nicht gefunden" });
 
             person.Name = Name;
+            db.SaveChanges();
 
             return Json(person);
         }
-    
 
+        // ---Löschen---
+
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            var person = db.Personen.Find(id);
+
+            if (person == null)
+                return Json(new { error = "Person nicht gefunden" });
+
+            db.Personen.Remove(person);
+            db.SaveChanges();
+
+            return Json(new { success = true });
+        }
 
 
 
